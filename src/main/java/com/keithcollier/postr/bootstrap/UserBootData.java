@@ -23,14 +23,12 @@ public class UserBootData implements ApplicationListener<ContextRefreshedEvent> 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         userRepository.saveAll(getUser());
-
     }
-
 
     private List<User> getUser(){
 
         List<User> users = new ArrayList<>(1);
-
+        List<Post> posts = new ArrayList<>(1);
 
         User user = new User();
         user.setFirstName("Keith");
@@ -38,6 +36,10 @@ public class UserBootData implements ApplicationListener<ContextRefreshedEvent> 
         user.setUserName("tocks");
         user.setPassword("none");
 
+        Post post = new Post();
+        post.setMessage("first message");
+
+        postRepository.save(post);
         userRepository.save(user);
 
         return users;

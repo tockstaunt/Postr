@@ -2,10 +2,12 @@ package com.keithcollier.postr.service;
 
 import com.keithcollier.postr.model.Post;
 import com.keithcollier.postr.repository.PostRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;

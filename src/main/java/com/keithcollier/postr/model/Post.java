@@ -2,19 +2,32 @@ package com.keithcollier.postr.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "posts")
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
+
+    @Column(name = "author_id")
     private String authorID;
+
+    @Column(name = "message")
     private String message;
+
+    @Column(name = "time_stamp")
     private Date timeStamp;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
+
+    public Post() {
+    }
 
     public Post(String s, String message) {
         this.message = message;
@@ -56,7 +69,10 @@ public class Post {
         return user;
     }
 
-    public void setUser(User user) {
+    private void setUser(User user) {
         this.user = user;
+    }
+
+    public void setAuthorID() {
     }
 }

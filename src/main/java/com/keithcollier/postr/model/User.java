@@ -5,19 +5,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "user_name")
     private String userName;
+
+    @Column(name = "password")
     private String password;
 
-    @ManyToMany
-    @JoinTable(name = "users_posts",
-            joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Post> post = new HashSet<>();
 
     public String getId() {
@@ -68,8 +75,8 @@ public class User {
         this.post = post;
     }
 
-    private User addPosts(Post post){
-        post.setUser(this);
+    public User addPosts(Post post){
+        post.setAuthorID(String.valueOf(this.getUserName()));
         this.post.add(post);
 
         return this;
