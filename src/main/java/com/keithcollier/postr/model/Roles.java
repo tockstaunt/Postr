@@ -4,13 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
-public class Roles {
+public class Roles extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 

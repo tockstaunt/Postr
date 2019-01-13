@@ -6,11 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+public class User extends BaseEntity{
 
     @Column(name = "first_name")
     private String firstName;
@@ -27,12 +23,10 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Post> post = new HashSet<>();
 
-    public String getId() {
-        return id;
-    }
+    @OneToOne
+    private Roles roles;
 
-    public void setId(String id) {
-        this.id = id;
+    public User() {
     }
 
     public String getFirstName() {
@@ -80,5 +74,13 @@ public class User {
         this.post.add(post);
 
         return this;
+    }
+
+    public Roles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
     }
 }

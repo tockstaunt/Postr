@@ -2,16 +2,10 @@ package com.keithcollier.postr.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "posts")
-public class Post {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+public class Post extends BaseEntity {
 
     @Column(name = "author_id")
     private String authorID;
@@ -29,16 +23,11 @@ public class Post {
     public Post() {
     }
 
-    public Post(String s, String message) {
+    public Post(String authorID, String message, Date timeStamp, User user) {
+        this.authorID = authorID;
         this.message = message;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.timeStamp = timeStamp;
+        this.user = user;
     }
 
     public String getAuthorID() {
