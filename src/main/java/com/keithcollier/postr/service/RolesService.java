@@ -1,4 +1,6 @@
 package com.keithcollier.postr.service;
 
-public interface RolesService  {
+import com.keithcollier.postr.model.Roles;
+
+public interface RolesService extends CrudService<Roles, Long> {
 }

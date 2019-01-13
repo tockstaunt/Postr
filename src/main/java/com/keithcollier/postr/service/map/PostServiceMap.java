@@ -2,14 +2,21 @@ package com.keithcollier.postr.service.map;
 
 import com.keithcollier.postr.model.Post;
 import com.keithcollier.postr.service.PostService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PostServiceMap extends AbstractMapService<Post, Long> implements PostService {
 
     @Override
     public Set<Post> findAll() {
         return super.findAll();
+    }
+
+    @Override
+    public Post findByID(Long aLong) {
+        return super.findById(aLong);
     }
 
     @Override

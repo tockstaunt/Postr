@@ -4,12 +4,14 @@ package com.keithcollier.postr.service.springdatajpaservices;
 import com.keithcollier.postr.model.User;
 import com.keithcollier.postr.repository.UserRepository;
 import com.keithcollier.postr.service.UserService;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Component
+@Service
+@Profile("springdatajpa")
 public class UserServiceSDJpa implements UserService {
 
     private final UserRepository userRepository;
@@ -17,6 +19,7 @@ public class UserServiceSDJpa implements UserService {
     public UserServiceSDJpa(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
 
     @Override
     public User findByFirstName(String firstName) {
@@ -27,44 +30,33 @@ public class UserServiceSDJpa implements UserService {
     public Set<User> getUsers() {
         Set<User> userSet = new HashSet<>();
         userRepository.findAll().forEach(userSet::add);
-
         return userSet;
     }
 
-
-    public User findByLastName(String lastName) {
-        return userRepository.findByLastName(lastName);
-    }
-
-
+    @Override
     public Set<User> findAll() {
-
         Set<User> userSet = new HashSet<>();
         userRepository.findAll().forEach(userSet::add);
         return userSet;
     }
 
-
+    @Override
     public User findByID(Long aLong) {
-
         return userRepository.findById(aLong).orElse(null);
-
     }
 
-
+    @Override
     public User save(User object) {
         return userRepository.save(object);
     }
 
-
+    @Override
     public void delete(User object) {
-
-        userRepository.delete(object);
+    userRepository.delete(object);
     }
 
-
+    @Override
     public void deleteById(Long aLong) {
-
-        userRepository.deleteById(aLong);
+    userRepository.deleteById(aLong);
     }
 }

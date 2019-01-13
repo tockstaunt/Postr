@@ -2,14 +2,21 @@ package com.keithcollier.postr.service.map;
 
 import com.keithcollier.postr.model.User;
 import com.keithcollier.postr.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class UserServiceMap extends AbstractMapService<User, Long> implements UserService {
 
     @Override
     public Set<User> findAll() {
         return super.findAll();
+    }
+
+    @Override
+    public User findByID(Long aLong) {
+        return super.findById(aLong);
     }
 
     @Override

@@ -2,8 +2,7 @@ package com.keithcollier.postr.service;
 
 import com.keithcollier.postr.model.Post;
 
-import java.util.Set;
+public interface PostService extends CrudService<Post, Long> {
 
-public interface PostService {
-
+    Post findById(Long id);
 }
